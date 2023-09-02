@@ -4,11 +4,24 @@
 			"id": 1,
 			"login": "ivan",
 			"password": "ivan1234",
-			"registered_at": "2025-09-22",
+			"registed_at": "2025-09-22",
 			"role_id": 0
+		},
+		{
+			"login": "petr",
+			"password": "123456",
+			"registed_at": "2056-08-03 01:10",
+			"role_id": 2,
+			"id": 2
+		},
+		{
+			"login": "qwert",
+			"password": "123456",
+			"registed_at": "2056-06-01 02:59",
+			"role_id": 2,
+			"id": 3
 		}
 	],
-
 	"roles": [
 		{
 			"id": 0,
@@ -27,7 +40,6 @@
 			"name": "Гость"
 		}
 	],
-
 	"posts": [
 		{
 			"id": "001",
