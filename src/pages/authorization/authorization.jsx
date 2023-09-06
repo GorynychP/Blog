@@ -4,7 +4,7 @@ import { Link, Navigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
-import { ROLE } from '../../bff/constants';
+import { ROLE } from '../../components/constants';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { server } from '../../bff';
 import { styled } from 'styled-components';

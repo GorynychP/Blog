@@ -1,4 +1,4 @@
-import { generateDate } from './generate-date';
+import { generateDate } from '../utils';
 
 export const addUser = (login, password) =>
 	fetch('http://localhost:3005/users', {
@@ -9,9 +9,9 @@ export const addUser = (login, password) =>
 		body: JSON.stringify({
 			login,
 			password,
-			registed_at: generateDate(),
+			registered_at: generateDate(),
 			role_id: 2,
 		}),
 	})
 		.then((createdUser) => createdUser.json())
-		.catch((error) => console.log(error));
+		.catch((error) => console.log(` Ну удалось добавить User: ${error}`));
