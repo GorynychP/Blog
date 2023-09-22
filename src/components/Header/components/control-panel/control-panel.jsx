@@ -8,7 +8,8 @@ import {
 	selectorUserLogin,
 	selectorUserSession,
 } from '../../../../selectors';
-import { logout } from '../../../../store/actions';
+import { RESET_POST_DATA, logout } from '../../../../store/actions';
+import { checkAccess } from '../../../utils/check-access';
 const RightAligned = styled.div`
 	display: flex;
 	justify-content: flex-end;
@@ -26,12 +27,14 @@ const ControlPanelContainer = ({ className }) => {
 	const login = useSelector(selectorUserLogin);
 	const session = useSelector(selectorUserSession);
 	const dispatch = useDispatch();
-	console.log(roleId);
-	console.log(session);
+	const isAdimin = checkAccess([ROLE.ADMIN], roleId);
+
 	const logautAndNavigate = () => {
 		dispatch(logout(session));
+		sessionStorage.removeItem('userData');
 		navigate('/');
 	};
+
 	return (
 		<div className={className}>
 			<RightAligned>
@@ -56,12 +59,26 @@ const ControlPanelContainer = ({ className }) => {
 					id="fa-backward"
 					margin="10px 0 0 0px"
 				/>
-				<Link to="/post">
-					<Icon id="fa-file-text" margin="10px 0 0 14px" />
-				</Link>
-				<Link to="/users">
-					<Icon id="fa-users" margin="10px 0 0 14px" />
-				</Link>
+				{isAdimin && (
+					<>
+						<Link to="/post">
+							<Icon
+								id="fa-file-text"
+								margin="10px 0 0 14px"
+								onClick={() => {
+									dispatch(RESET_POST_DATA);
+								}}
+							/>
+						</Link>
+						<Link to="/users">
+							<Icon
+								id="fa-users"
+								margin="10px 0 0 14px"
+								onClick={() => {}}
+							/>
+						</Link>
+					</>
+				)}
 			</RightAligned>
 		</div>
 	);

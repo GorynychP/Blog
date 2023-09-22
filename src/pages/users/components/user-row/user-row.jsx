@@ -22,8 +22,6 @@ const UserRowContainer = ({
 		setSelectedRoleId(Number(target.value));
 	};
 	const onRoleSave = (roleId, newUserRoleId) => {
-		console.log(roleId);
-		console.log(newUserRoleId);
 		requestServer('updateUserRole', roleId, newUserRoleId).then(() => {
 			setInitialRoleId(newUserRoleId);
 		});

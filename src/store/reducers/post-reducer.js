@@ -1,13 +1,22 @@
-const initialState = [];
+import { ACTIONS_TYPE } from '../actions/actions-type';
+
+const initialState = {
+	id: '',
+	title: '',
+	image_url: '',
+	content: '',
+	published_at: '',
+	comments: [],
+};
 
 export const postReducer = (state = initialState, action) => {
 	const { type, payload } = action;
 
 	switch (type) {
-		case '1':
-			return {};
-		case '2':
-			return {};
+		case ACTIONS_TYPE.SET_POST_DATA:
+			return { ...state, ...payload };
+		case ACTIONS_TYPE.RESET_POST_DATA:
+			return initialState;
 		case '3':
 			return {};
 

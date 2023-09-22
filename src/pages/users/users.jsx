@@ -2,47 +2,65 @@ import React, { useEffect, useState } from 'react';
 import { TableRow, UserRow } from './components';
 import { useServerRequest } from '../../hooks';
 import { styled } from 'styled-components';
-import { Content } from '../../components';
+import { PrivateContent } from '../../components';
 import { ROLE } from '../../components/constants';
+import { checkAccess } from '../../components/utils';
+import { useSelector } from 'react-redux';
+import { selectorUserRole } from '../../selectors';
 
 const UsersContainer = ({ className }) => {
 	const [users, setUsers] = useState([]);
 	const [roles, setRoles] = useState([]);
+	const [isLoading, setIsLoading] = useState(true);
 	const [errorMessage, setErrorMessage] = useState(null);
 	const [checkUser, setCheckUser] = useState(false);
+	const userRole = useSelector(selectorUserRole);
 	const requestServer = useServerRequest();
 
 	useEffect(() => {
+		if (!checkAccess([ROLE.ADMIN], userRole)) {
+			setIsLoading(false);
+			return;
+		}
 		Promise.all([
 			requestServer('fetchUsers'),
 			requestServer('fetchRoles'),
 		]).then(([usersRes, rolesRes]) => {
-			console.log('usersRes', usersRes);
-			console.log('rolesRes', rolesRes);
 			if (usersRes.error || rolesRes.error) {
 				setErrorMessage(usersRes.error || rolesRes.error);
 				return;
 			}
-
 			setUsers(usersRes.res);
 			setRoles(rolesRes.res);
+			setIsLoading(false);
 		});
 		requestServer('fetchRoles').then((rolesError, res) => {
 			if (rolesError) {
+				setIsLoading(false);
 				return;
 			}
 			setRoles(res);
+			setIsLoading(false);
 		});
-	}, [requestServer, checkUser]);
+	}, [requestServer, checkUser, userRole]);
 
 	const onRemoveUser = (id) => {
+		if (!checkAccess([ROLE.ADMIN], userRole)) {
+			setIsLoading(false);
+			return;
+		}
+
 		requestServer('removeUser', id).then(() => {
 			setCheckUser(!checkUser);
 		});
 	};
+	if (isLoading) {
+		return null;
+	}
+
 	return (
-		<div className={className}>
-			<Content error={errorMessage}>
+		<PrivateContent access={[ROLE.ADMIN]} serverError={errorMessage}>
+			<div className={className}>
 				{' '}
 				<h2>Пользователи</h2>
 				<TableRow>
@@ -61,8 +79,8 @@ const UsersContainer = ({ className }) => {
 						onRemoveUser={() => onRemoveUser(id)}
 					/>
 				))}{' '}
-			</Content>
-		</div>
+			</div>
+		</PrivateContent>
 	);
 };
 
@@ -71,6 +89,6 @@ export const Users = styled(UsersContainer)`
 	align-items: center;
 	flex-direction: column;
 	width: 570px;
-	font-sizes: 18pxL;
+	font-sizes: 18px;
 	margin: 0 auto;
 `;

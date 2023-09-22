@@ -62,4 +62,7 @@ export const Footer = styled(FooterContainer)`
 	background-color: #fff;
 	padding: 20px 40px;
 	box-shadow: 0px -2px 17px #000;
+	height: 140px;
+	align-items: center;
+	font-size: 18px;
 `;

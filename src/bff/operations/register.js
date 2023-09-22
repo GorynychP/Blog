@@ -8,7 +8,6 @@ export const register = async (regLogin, regPassword) => {
 		return { error: 'Такой пользователь уже существует', res: null };
 	}
 	const NewUser = await addUser(regLogin, regPassword);
-	console.log(NewUser);
 	return {
 		error: null,
 		res: {

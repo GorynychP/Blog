@@ -10596,6 +10596,40 @@ readers do not read off random characters that represent icons */
 .fa-pix:before {
 	content: '\e43a';
 }
+.fa.fa-paper-plane-o {
+	font-family: 'Font Awesome 6 Free';
+	font-weight: 400;
+}
+
+.fa.fa-paper-plane-o:before {
+	content: '\f1d8';
+}
+.fa.fa-user-circle-o {
+	font-family: 'Font Awesome 6 Free';
+	font-weight: 400;
+}
+
+.fa.fa-user-circle-o:before {
+	content: '\f2bd';
+}
+
+.fa.fa-file-text-o {
+	font-family: 'Font Awesome 6 Free';
+	font-weight: 400;
+}
+
+.fa.fa-file-text-o:before {
+	content: '\f15c';
+}
+
+.fa.fa-pencil-square-o {
+	font-family: 'Font Awesome 6 Free';
+	font-weight: 400;
+}
+
+.fa.fa-pencil-square-o:before {
+	content: '\f044';
+}
 
 .fa.fa-floppy-o {
 	font-family: 'Font Awesome 6 Free';
@@ -10605,6 +10639,24 @@ readers do not read off random characters that represent icons */
 .fa.fa-floppy-o:before {
 	content: '\f0c7';
 }
+.fa.fa-comment-o {
+	font-family: 'Font Awesome 6 Free';
+	font-weight: 400;
+}
+
+.fa.fa-comment-o:before {
+	content: '\f075';
+}
+
+.fa.fa-calendar-o {
+	font-family: 'Font Awesome 6 Free';
+	font-weight: 400;
+}
+
+.fa.fa-calendar-o:before {
+	content: '\f133';
+}
+
 .fa.fa-trash-o {
 	font-family: 'Font Awesome 6 Free';
 	font-weight: 400;

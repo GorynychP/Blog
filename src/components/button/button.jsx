@@ -10,7 +10,7 @@ const ButtonContainer = ({ children, className, width, ...props }) => {
 };
 
 export const Button = styled(ButtonContainer)`
-	cursor: pointer;
+	cursor: ${({ disabled }) => (disabled ? 'default' : 'pointer')};
 	display: flex;
 	justify-content: center;
 	align-items: center;
