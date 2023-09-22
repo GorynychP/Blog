@@ -1,5 +1,6 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 import { styled } from 'styled-components';
+import { PROP_TYPE } from '../constants';
 const Div = styled.div`
 	display: flex;
 	align-items: center;
@@ -12,3 +13,6 @@ export const Error = ({ error }) =>
 			<div>{error}</div>
 		</Div>
 	);
+Error.propTypes = {
+	error: PROP_TYPE.ERROR,
+};

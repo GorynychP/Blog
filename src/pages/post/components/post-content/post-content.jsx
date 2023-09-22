@@ -1,4 +1,4 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Icon } from '../../../../components';
 import { useNavigate } from 'react-router-dom';
@@ -10,7 +10,7 @@ import {
 	openModal,
 	removePostAsync,
 } from '../../../../store/actions';
-import { ROLE } from '../../../../components/constants';
+import { PROP_TYPE, ROLE } from '../../../../components/constants';
 import { selectorUserRole } from '../../../../selectors';
 import { checkAccess } from '../../../../components/utils/check-access';
 
@@ -95,3 +95,6 @@ export const PostContent = styled(PostContentContainer)`
 		display: flex;
 	}
 `;
+PostContent.propTypes = {
+	post: PROP_TYPE.POST.isRequired,
+};

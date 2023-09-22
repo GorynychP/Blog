@@ -1,9 +1,10 @@
+import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { styled } from 'styled-components';
 import { Icon } from '../../../../components';
-import { useDispatch } from 'react-redux';
 import { TableRow } from '../table-row/table-row';
 import { useServerRequest } from '../../../../hooks';
+import { PROP_TYPE } from '../../../../components/constants';
 
 const UserRowContainer = ({
 	className,
@@ -17,7 +18,6 @@ const UserRowContainer = ({
 	const [initialRoleId, setInitialRoleId] = useState(userRoleId);
 	const [selectedRoleId, setSelectedRoleId] = useState(userRoleId);
 	const requestServer = useServerRequest();
-	const dispatch = useDispatch();
 	const onRoleChange = ({ target }) => {
 		setSelectedRoleId(Number(target.value));
 	};
@@ -63,3 +63,11 @@ export const UserRow = styled(UserRowContainer)`
 	width: 565px;
 	margin: 10px;
 `;
+UserRow.propTypes = {
+	id: PropTypes.number.isRequired,
+	login: PropTypes.string.isRequired,
+	registered_at: PropTypes.string.isRequired,
+	role_id: PropTypes.number.isRequired,
+	roles: PropTypes.arrayOf(PROP_TYPE.ROLE).isRequired,
+	onRemoveUser: PropTypes.func.isRequired,
+};

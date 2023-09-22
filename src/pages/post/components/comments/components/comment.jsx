@@ -1,4 +1,4 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Icon } from '../../../../../components';
 import { useServerRequest } from '../../../../../hooks';
@@ -103,3 +103,10 @@ export const Comment = styled(CommentContainer)`
 		text-align: left;
 	}
 `;
+Comment.propTypes = {
+	postId: PropTypes.string.isRequired,
+	id: PropTypes.number.isRequired,
+	author: PropTypes.string.isRequired,
+	published_at: PropTypes.string.isRequired,
+	content: PropTypes.string.isRequired,
+};

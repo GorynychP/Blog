@@ -1,4 +1,4 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 import { styled } from 'styled-components';
 
 const ButtonContainer = ({ children, className, width, ...props }) => {
@@ -20,3 +20,7 @@ export const Button = styled(ButtonContainer)`
 	width: ${({ width = '100%' }) => width};
 	height: 32px;
 `;
+Button.propTypes = {
+	children: PropTypes.node.isRequired,
+	width: PropTypes.string,
+};

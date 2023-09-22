@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { useLayoutEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { Icon, Input } from '../../../../components';
@@ -12,6 +13,7 @@ import {
 	removePostAsync,
 	savePostAsync,
 } from '../../../../store/actions';
+import { PROP_TYPE } from '../../../../components/constants';
 
 const PostFormContainer = ({
 	className,
@@ -145,3 +147,6 @@ export const PostForm = styled(PostFormContainer)`
 		display: flex;
 	}
 `;
+PostForm.propTypes = {
+	post: PROP_TYPE.POST.isRequired,
+};
